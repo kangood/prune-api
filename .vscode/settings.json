@@ -7,7 +7,6 @@
     "typescript.suggest.jsdoc.generateReturns": false,
     "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "eslint.packageManager": "pnpm",
     "stylelint.packageManager": "pnpm",
     "npm.packageManager": "pnpm"
 }
