@@ -18,6 +18,8 @@ import { OrgEntity, RoleEntity, StationEntity, UserEntity } from '../entities';
 import { UserRoleRelationEntity } from '../entities/user-role-relation.entity';
 import { UserRepository } from '../repositories';
 
+import { RoleAuthorityService } from './role-authority.service';
+
 // 用户查询接口
 type FindParams = {
     [key in keyof Omit<QueryUserDto, 'limit' | 'page'>]: QueryUserDto[key];
@@ -31,6 +33,7 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
     constructor(
         protected repository: UserRepository,
         protected dictionaryService: DictionaryService,
+        protected roleAuthorityService: RoleAuthorityService,
     ) {
         super(repository);
     }
@@ -81,6 +84,47 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
             'user_role.user_id=user.id',
         ).leftJoinAndMapOne(`user_role.role`, RoleEntity, 'role', 'user_role.role_id=role.id');
         return qb.getMany();
+    }
+
+    /**
+     * 根据用户ID查询用户嵌套角色关联
+     */
+    async listUserNestRolesByUserId(options: QueryUserDto) {
+        // 调用父类通用qb处理方法
+        const qb = await super.buildListQB(this.repository.buildBaseQB(), options);
+        // 子类自我实现
+        const { id } = options;
+        const queryName = this.repository.qbName;
+        // 对几个可选参数的where判断
+        if (!isEmpty(id)) {
+            qb.andWhere(`${queryName}.id = '${id}'`);
+        }
+        // 关联角色查询
+        qb.leftJoinAndMapMany(
+            `user.userRoles`,
+            UserRoleRelationEntity,
+            'user_role',
+            'user_role.user_id=user.id',
+        ).innerJoinAndMapOne(`user_role.role`, RoleEntity, 'role', 'user_role.role_id=role.id');
+        return qb.getMany();
+    }
+
+    /**
+     * 查询用户登录后信息
+     */
+    async getUserSigninAfterInfo(options: QueryUserDto) {
+        const userNestRolesList = await this.listUserNestRolesByUserId(options);
+        // 处理数据格式
+        const user = userNestRolesList[0];
+        const role: RoleEntity[] = [];
+        user.userRoles.forEach((userRole) => {
+            role.push(userRole.role);
+        });
+        // 删除 userRoles 字段
+        delete user.userRoles;
+        // 加入新处理的 roleList
+        user.roleList = role;
+        return '';
     }
 
     /**

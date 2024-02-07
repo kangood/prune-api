@@ -31,9 +31,9 @@ export class UserController extends BaseController<UserService> {
         return this.service.listRelate(options);
     }
 
-    // @Get('list')
-    // @RequireAuthority('org:user:list')
-    // async list(@Query() options: ListWithTrashedQueryDto, ...args: any[]) {
-    //     return super.list(options, args);
-    // }
+    @Get('getUserSigninAfterInfo')
+    @RequireAuthority('org:user:getUserSigninAfterInfo')
+    async getUserSigninAfterInfo(@Query() options: QueryUserDto) {
+        return this.service.getUserSigninAfterInfo(options);
+    }
 }

@@ -14,6 +14,7 @@ import { UserEchoDto } from '@/modules/org/dtos';
 import { OrgEntity } from '@/modules/org/entities/org.entity';
 import { StationEntity } from '@/modules/org/entities/station.entity';
 
+import { RoleEntity } from './role.entity';
 import { UserRoleEntity } from './user-role.entity';
 
 @Index('uk_account', ['account'], { unique: true })
@@ -30,6 +31,9 @@ export class UserEntity extends BaseEntity {
 
     @Type()
     userRoles: UserRoleEntity[];
+
+    @Type()
+    roleList: RoleEntity[];
 
     @Column('varchar', {
         name: 'account',

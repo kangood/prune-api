@@ -21,7 +21,7 @@ export class AuthService {
     /**
      * 登录
      */
-    async login(loginUserDto: LoginUserDto) {
+    async signin(loginUserDto: LoginUserDto) {
         // 验证账号
         const userList = await this.userService.getUserAndRoles({
             account: loginUserDto.account,

@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
-import { AUTHORITY_TYPE_RESOURCE } from '../org/constants';
+import { AUTHORITY_TYPE_RESOURCE, LIST_MAX_LIMIT } from '../org/constants';
 import { RoleAuthorityService } from '../org/services';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class AuthorityGuard implements CanActivate {
             roleIds: request.user.userRoles.map((item) => item.role.id),
             authorityType: AUTHORITY_TYPE_RESOURCE,
             page: 1,
-            limit: 10000,
+            limit: LIST_MAX_LIMIT,
         });
         const resources = roleAuthorities.map((item) => item.resource);
         if (!resources) {

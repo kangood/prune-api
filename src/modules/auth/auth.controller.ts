@@ -8,9 +8,9 @@ import { AuthService } from './auth.service';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    @Post('login')
-    async login(@Body() loginUserDto: LoginUserDto) {
-        return this.authService.login(loginUserDto);
+    @Post('signin')
+    async signin(@Body() loginUserDto: LoginUserDto) {
+        return this.authService.signin(loginUserDto);
     }
 
     @Get('refresh')

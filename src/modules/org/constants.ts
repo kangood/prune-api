@@ -1,2 +1,3 @@
 export const AUTHORITY_TYPE_MENU = 'MENU';
 export const AUTHORITY_TYPE_RESOURCE = 'RESOURCE';
+export const LIST_MAX_LIMIT = 10000;
