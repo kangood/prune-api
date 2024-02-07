@@ -53,7 +53,15 @@ export class AuthService {
             },
             { expiresIn: REFRESH_TOKEN_EXPIRE_TIME },
         );
-        return { code: SUCCESS, message: '登录成功', result: { accessToken, refreshToken } };
+        // 返回登录后用户信息
+        const userSigninAfterInfo = await this.userService.getUserSigninAfterInfo({
+            userId: user.id,
+        });
+        return {
+            code: SUCCESS,
+            message: '登录成功',
+            result: { user: userSigninAfterInfo, accessToken, refreshToken },
+        };
     }
 
     /**

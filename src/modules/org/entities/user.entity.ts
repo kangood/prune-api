@@ -33,7 +33,10 @@ export class UserEntity extends BaseEntity {
     userRoles: UserRoleEntity[];
 
     @Type()
-    roleList: RoleEntity[];
+    roles: RoleEntity[];
+
+    @Type()
+    permissions: any;
 
     @Column('varchar', {
         name: 'account',

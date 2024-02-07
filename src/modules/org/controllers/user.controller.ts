@@ -4,7 +4,7 @@ import { RequireAuthority, RequireLogin } from '@/modules/auth/auth.decorator';
 import { BaseController } from '@/modules/restful/base';
 import { Crud } from '@/modules/restful/decorators';
 
-import { CreateUserDto, QueryUserDto, UpdateUserDto } from '../dtos';
+import { CreateUserDto, LoginUserDto, QueryUserDto, UpdateUserDto } from '../dtos';
 
 import { UserService } from '../services';
 
@@ -33,7 +33,7 @@ export class UserController extends BaseController<UserService> {
 
     @Get('getUserSigninAfterInfo')
     @RequireAuthority('org:user:getUserSigninAfterInfo')
-    async getUserSigninAfterInfo(@Query() options: QueryUserDto) {
+    async getUserSigninAfterInfo(@Query() options: LoginUserDto) {
         return this.service.getUserSigninAfterInfo(options);
     }
 }

@@ -13,7 +13,7 @@ import { DictionaryType, PublicOrderType } from '@/modules/system/constants';
 import { QueryDictionaryDto } from '@/modules/system/dtos';
 import { DictionaryService } from '@/modules/system/services';
 
-import { CreateUserDto, QueryUserDto, UpdateUserDto, UserEchoDto } from '../dtos';
+import { CreateUserDto, LoginUserDto, QueryUserDto, UpdateUserDto, UserEchoDto } from '../dtos';
 import { OrgEntity, RoleEntity, StationEntity, UserEntity } from '../entities';
 import { UserRoleRelationEntity } from '../entities/user-role-relation.entity';
 import { UserRepository } from '../repositories';
@@ -66,7 +66,7 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
     /**
      * 调用关联角色查询并分页
      */
-    async getUserAndRoles(options?: QueryUserDto) {
+    async getUserAndRoles(options?: QueryUserDto): Promise<UserEntity[]> {
         // 调用父类通用qb处理方法
         const qb = await super.buildListQB(this.repository.buildBaseQB(), options);
         // 子类自我实现
@@ -89,15 +89,15 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
     /**
      * 根据用户ID查询用户嵌套角色关联
      */
-    async listUserNestRolesByUserId(options: QueryUserDto) {
+    async listUserNestRolesByUserId(options: LoginUserDto): Promise<UserEntity[]> {
         // 调用父类通用qb处理方法
         const qb = await super.buildListQB(this.repository.buildBaseQB(), options);
         // 子类自我实现
-        const { id } = options;
+        const { userId } = options;
         const queryName = this.repository.qbName;
         // 对几个可选参数的where判断
-        if (!isEmpty(id)) {
-            qb.andWhere(`${queryName}.id = '${id}'`);
+        if (!isEmpty(userId)) {
+            qb.andWhere(`${queryName}.id = '${userId}'`);
         }
         // 关联角色查询
         qb.leftJoinAndMapMany(
@@ -112,7 +112,7 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
     /**
      * 查询用户登录后信息
      */
-    async getUserSigninAfterInfo(options: QueryUserDto) {
+    async getUserSigninAfterInfo(options: LoginUserDto) {
         const userNestRolesList = await this.listUserNestRolesByUserId(options);
         // 处理数据格式
         const user = userNestRolesList[0];
@@ -123,8 +123,133 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
         // 删除 userRoles 字段
         delete user.userRoles;
         // 加入新处理的 roleList
-        user.roleList = role;
-        return '';
+        user.roles = role;
+        user.permissions = [
+            {
+                id: '9100714781927703',
+                parentId: '',
+                label: 'sys.menu.dashboard',
+                name: 'Dashboard',
+                icon: 'ic-analysis',
+                type: 0,
+                route: 'dashboard',
+                order: 1,
+                children: [
+                    {
+                        id: '8426999229400979',
+                        parentId: '9100714781927703',
+                        label: 'sys.menu.workbench',
+                        name: 'Workbench',
+                        type: 1,
+                        route: 'workbench',
+                        component: '/dashboard/workbench/index.tsx',
+                    },
+                    {
+                        id: '9710971640510357',
+                        parentId: '9100714781927703',
+                        label: 'sys.menu.analysis',
+                        name: 'Analysis',
+                        type: 1,
+                        route: 'analysis',
+                        component: '/dashboard/analysis/index.tsx',
+                    },
+                ],
+            },
+            {
+                id: '0901673425580518',
+                parentId: '',
+                label: 'sys.menu.management',
+                name: 'Management',
+                icon: 'ic-management',
+                type: 0,
+                route: 'management',
+                order: 2,
+                children: [
+                    {
+                        id: '2781684678535711',
+                        parentId: '0901673425580518',
+                        label: 'sys.menu.user.index',
+                        name: 'User',
+                        type: 0,
+                        route: 'user',
+                        children: [
+                            {
+                                id: '4754063958766648',
+                                parentId: '2781684678535711',
+                                label: 'sys.menu.user.profile',
+                                name: 'Profile',
+                                type: 1,
+                                route: 'profile',
+                                component: '/management/user/profile/index.tsx',
+                            },
+                            {
+                                id: '2516598794787938',
+                                parentId: '2781684678535711',
+                                label: 'sys.menu.user.account',
+                                name: 'Account',
+                                type: 1,
+                                route: 'account',
+                                component: '/management/user/account/index.tsx',
+                            },
+                        ],
+                    },
+                    {
+                        id: '0249937641030250',
+                        parentId: '0901673425580518',
+                        label: 'sys.menu.system.index',
+                        name: 'System',
+                        type: 0,
+                        route: 'system',
+                        children: [
+                            {
+                                id: '1985890042972842',
+                                parentId: '0249937641030250',
+                                label: 'sys.menu.system.organization',
+                                name: 'Organization',
+                                type: 1,
+                                route: 'organization',
+                                component: '/management/system/organization/index.tsx',
+                            },
+                            {
+                                id: '4359580910369984',
+                                parentId: '0249937641030250',
+                                label: 'sys.menu.system.permission',
+                                name: 'Permission',
+                                type: 1,
+                                route: 'permission',
+                                component: '/management/system/permission/index.tsx',
+                            },
+                            {
+                                id: '1689241785490759',
+                                parentId: '0249937641030250',
+                                label: 'sys.menu.system.role',
+                                name: 'Role',
+                                type: 1,
+                                route: 'role',
+                                component: '/management/system/role/index.tsx',
+                            },
+                            {
+                                id: '0157880245365433',
+                                parentId: '0249937641030250',
+                                label: 'sys.menu.system.user',
+                                name: 'User',
+                                type: 1,
+                                route: 'user',
+                                component: '/management/system/user/index.tsx',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
+        // const roleAuthorityList = await this.roleAuthorityService.listRoleAuthorityByRoleIds({
+        //     authorityType: AUTHORITY_TYPE_MENU,
+        //     roleIds: [1],
+        //     page: 1,
+        //     limit: LIST_MAX_LIMIT,
+        // });
+        // console.log('123', roleAuthorityList);
+        return user;
     }
 
     /**

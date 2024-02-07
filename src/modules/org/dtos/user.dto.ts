@@ -83,10 +83,13 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
 @DtoValidation({ groups: ['login'] })
 export class LoginUserDto {
     @IsNotEmpty({ groups: ['login'], message: '用户名不能为空' })
-    account: string;
+    account?: string;
 
     @IsNotEmpty({ groups: ['login'], message: '密码不能为空' })
-    password: string;
+    password?: string;
+
+    @IsOptional()
+    userId?: number;
 }
 
 /**
