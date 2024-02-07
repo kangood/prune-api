@@ -58,9 +58,9 @@ export class AuthService {
             userId: user.id,
         });
         return {
-            code: SUCCESS,
+            status: SUCCESS,
             message: '登录成功',
-            result: { user: userSigninAfterInfo, accessToken, refreshToken },
+            data: { user: userSigninAfterInfo, accessToken, refreshToken },
         };
     }
 
