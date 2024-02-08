@@ -17,10 +17,10 @@ export class QueryRoleAuthorityDto extends ListWithTrashedQueryDto {
     orderBy?: PublicOrderType;
 
     @IsOptional()
-    roleId?: number;
+    roleId?: string;
 
     @IsOptional()
-    roleIds?: number[];
+    roleIds?: string[];
 
     @IsOptional()
     authorityType?: string;
@@ -33,15 +33,15 @@ export class QueryRoleAuthorityDto extends ListWithTrashedQueryDto {
 export class CreateRoleAuthorityDto {
     @IsOptional()
     @IsNotEmpty({ groups: ['create', 'update'], message: '角色ID不能为空' })
-    roleId?: number;
+    roleId?: string;
 
     @IsOptional()
-    menuIdList?: number[];
+    menuIdList?: string[];
 
     @IsOptional()
-    resourceIdList?: number[];
+    resourceIdList?: string[];
 
-    authorityId!: number;
+    authorityId!: string;
 
     authorityType!: string;
 }

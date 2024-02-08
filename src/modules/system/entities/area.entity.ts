@@ -96,12 +96,13 @@ export class AreaEntity extends BaseEntity {
     })
     state: boolean | null;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'parentId',
         nullable: true,
         comment: '父ID',
+        length: 20,
     })
-    parentId: number | null;
+    parentId: string | null;
 
     @DeleteDateColumn({
         name: 'deleted_at',

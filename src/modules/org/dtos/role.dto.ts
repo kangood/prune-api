@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -56,9 +56,9 @@ export class CreateRoleDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateRoleDto extends PartialType(CreateRoleDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '角色ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '角色ID格式错误' })
     @IsDefined({ groups: ['update'], message: '角色ID必须指定' })
-    id!: number;
+    id!: string;
 }
 
 /**

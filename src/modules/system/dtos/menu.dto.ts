@@ -5,6 +5,7 @@ import {
     IsEnum,
     IsNotEmpty,
     IsNumber,
+    IsNumberString,
     IsOptional,
     Min,
     ValidateIf,
@@ -48,10 +49,10 @@ export class CreateMenuDto {
     label!: string;
 
     @IsDataExist(MenuEntity, { always: true, message: '父菜单不存在' })
-    @IsNumber(undefined, { always: true, message: '父菜单ID格式不正确' })
+    @IsNumberString(undefined, { always: true, message: '父菜单ID格式不正确' })
     @ValidateIf((value) => value.parent !== null && value.parent)
     @IsOptional({ always: true })
-    parent?: number;
+    parent?: string;
 
     @Transform(({ value }) => toNumber(value))
     @Min(1, { always: true, message: '排序值必须大于1' })
@@ -77,7 +78,7 @@ export class CreateMenuDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateMenuDto extends PartialType(CreateMenuDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '机构ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '机构ID格式错误' })
     @IsDefined({ groups: ['update'], message: '机构ID必须指定' })
-    id!: number;
+    id!: string;
 }

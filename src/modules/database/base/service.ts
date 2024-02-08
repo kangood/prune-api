@@ -90,7 +90,7 @@ export abstract class BaseService<
      * @param id
      * @param callback 回调查询
      */
-    async detail(id: number, callback?: QueryHook<E>): Promise<E> {
+    async detail(id: string, callback?: QueryHook<E>): Promise<E> {
         const qb = await this.buildItemQB(id, this.repository.buildBaseQB(), callback);
         const item = await qb.getOne();
         if (!item) throw new NotFoundException(`${this.repository.qbName} ${id} not exists!`);
@@ -196,7 +196,7 @@ export abstract class BaseService<
      * @param qb queryBuilder实例
      * @param callback 查询回调
      */
-    protected async buildItemQB(id: number, qb: SelectQueryBuilder<E>, callback?: QueryHook<E>) {
+    protected async buildItemQB(id: string, qb: SelectQueryBuilder<E>, callback?: QueryHook<E>) {
         qb.where(`${this.repository.qbName}.id = :id`, { id });
         if (callback) return callback(qb);
         return qb;

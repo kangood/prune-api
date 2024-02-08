@@ -25,12 +25,13 @@ export class ResourceEntity extends BaseEntity {
     @Column('varchar', { name: 'name', comment: '名称', length: 255 })
     name: string;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'menu_id',
         nullable: true,
         comment: '菜单\n#c_menu',
+        length: 20,
     })
-    menuId: number | null;
+    menuId: string | null;
 
     @Column('varchar', {
         name: 'describe_',

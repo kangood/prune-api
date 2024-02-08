@@ -77,7 +77,7 @@ export class AreaService extends BaseService<AreaEntity, AreaRepository> {
      * @param current 当前地区的ID
      * @param id
      */
-    protected async getParent(current?: number, id?: number) {
+    protected async getParent(current?: string, id?: string) {
         if (current === id) return undefined;
         let parent: AreaEntity | undefined;
         if (id !== undefined) {

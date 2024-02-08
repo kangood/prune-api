@@ -5,6 +5,7 @@ import {
     IsEnum,
     IsNotEmpty,
     IsNumber,
+    IsNumberString,
     IsOptional,
     Min,
     ValidateIf,
@@ -49,7 +50,7 @@ export class CreateAreaDto {
     @IsNumber(undefined, { always: true, message: '父地区ID格式不正确' })
     @ValidateIf((value) => value.parent !== null && value.parent)
     @IsOptional({ always: true })
-    parent?: number;
+    parent?: string;
 
     @Transform(({ value }) => toNumber(value))
     @Min(1, { always: true, message: '排序值必须大于1' })
@@ -76,7 +77,7 @@ export class CreateAreaDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateAreaDto extends PartialType(CreateAreaDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '地区ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '地区ID格式错误' })
     @IsDefined({ groups: ['update'], message: '地区ID必须指定' })
-    id!: number;
+    id!: string;
 }

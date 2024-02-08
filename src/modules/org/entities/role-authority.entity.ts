@@ -12,11 +12,12 @@ export class RoleAuthorityEntity extends BaseEntity {
     @Type()
     resource: ResourceEntity;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'authority_id',
         comment: '资源id \n#c_resource #c_menu',
+        length: 20,
     })
-    authorityId: number;
+    authorityId: string;
 
     @Column('varchar', {
         name: 'authority_type',
@@ -25,8 +26,8 @@ export class RoleAuthorityEntity extends BaseEntity {
     })
     authorityType: string;
 
-    @Column('bigint', { name: 'role_id', comment: '角色id \n#c_role' })
-    roleId: number;
+    @Column('varchar', { name: 'role_id', comment: '角色id \n#c_role', length: 20 })
+    roleId: string;
 
     @CreateDateColumn({
         name: 'created_at',

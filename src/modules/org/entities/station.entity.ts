@@ -23,12 +23,13 @@ export class StationEntity extends BaseEntity {
     })
     name: string;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'org_id',
         nullable: true,
         comment: '机构',
+        length: 20,
     })
-    orgId: number | null;
+    orgId: string | null;
 
     @Type()
     orgMap: OrgEntity;

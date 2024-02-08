@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -22,7 +22,7 @@ export class QueryResourceDto extends ListWithTrashedQueryDto {
     orderBy?: PublicOrderType;
 
     @IsOptional()
-    menuId?: number;
+    menuId?: string;
 
     @IsOptional()
     code?: string;
@@ -63,7 +63,7 @@ export class CreateResourceDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateResourceDto extends PartialType(CreateResourceDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '资源ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '资源ID格式错误' })
     @IsDefined({ groups: ['update'], message: '资源ID必须指定' })
-    id!: number;
+    id!: string;
 }

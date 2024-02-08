@@ -49,11 +49,11 @@ export class UserEntity extends BaseEntity {
     @Column('varchar', { name: 'name', comment: '姓名', length: 50 })
     name: string;
 
-    @Column('bigint', { name: 'org_id', nullable: true, comment: '机构' })
-    orgId: number | null;
+    @Column('varchar', { name: 'org_id', nullable: true, comment: '机构', length: 20 })
+    orgId: string | null;
 
-    @Column('bigint', { name: 'station_id', nullable: true, comment: '岗位' })
-    stationId: number | null;
+    @Column('varchar', { name: 'station_id', nullable: true, comment: '岗位', length: 20 })
+    stationId: string | null;
 
     @Column('bit', {
         name: 'readonly',

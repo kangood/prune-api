@@ -11,11 +11,11 @@ export class UserRoleEntity extends BaseEntity {
     @Type()
     role: RoleEntity;
 
-    @Column('bigint', { name: 'role_id', comment: '角色\n#c_role' })
-    roleId: number;
+    @Column('varchar', { name: 'role_id', comment: '角色\n#c_role', length: 20 })
+    roleId: string;
 
-    @Column('bigint', { name: 'user_id', comment: '用户\n#c_user' })
-    userId: number;
+    @Column('varchar', { name: 'user_id', comment: '用户\n#c_user', length: 20 })
+    userId: string;
 
     @DeleteDateColumn({
         name: 'deleted_at',

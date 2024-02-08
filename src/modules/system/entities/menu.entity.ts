@@ -134,12 +134,13 @@ export class MenuEntity extends BaseEntity {
     })
     isDef: boolean | null;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'parentId',
         nullable: true,
         comment: '父级菜单ID',
+        length: 20,
     })
-    parentId: number | null;
+    parentId: string | null;
 
     @Column('bit', {
         name: 'readonly_',

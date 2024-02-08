@@ -3,6 +3,6 @@ import { BaseEntity as TypeOrmBaseEntity, Column } from 'typeorm';
 
 export class BaseEntity extends TypeOrmBaseEntity {
     @Expose()
-    @Column('bigint', { primary: true, name: 'id', comment: '主键' })
-    id: number;
+    @Column('varchar', { primary: true, name: 'id', comment: '主键', length: 20 })
+    id: string;
 }

@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -24,7 +24,7 @@ export class QueryStationDto extends ListWithTrashedQueryDto {
     name?: string;
 
     @IsOptional()
-    orgId?: number;
+    orgId?: string;
 
     @Transform(({ value }) => value.split(','))
     @IsOptional()
@@ -49,7 +49,7 @@ export class CreateStationDto {
     name!: string;
 
     @IsOptional()
-    orgId?: number;
+    orgId?: string;
 
     @IsOptional()
     state?: boolean;
@@ -63,7 +63,7 @@ export class CreateStationDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateStationDto extends PartialType(CreateStationDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '岗位ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '岗位ID格式错误' })
     @IsDefined({ groups: ['update'], message: '岗位ID必须指定' })
-    id!: number;
+    id!: string;
 }

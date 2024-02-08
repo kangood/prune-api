@@ -53,12 +53,13 @@ export class OrgEntity extends BaseEntity {
     })
     abbreviation: string | null;
 
-    @Column('bigint', {
+    @Column('varchar', {
         name: 'parentId',
         nullable: true,
         comment: '父ID',
+        length: 20,
     })
-    parentId: number | null;
+    parentId: string | null;
 
     @Column('int', {
         name: 'sort_value',

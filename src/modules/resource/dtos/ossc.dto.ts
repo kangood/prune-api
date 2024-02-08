@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/swagger';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -52,9 +52,9 @@ export class CreateOsscDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateOsscDto extends PartialType(CreateOsscDto) {
-    @IsNumber(undefined, { groups: ['update'], message: 'ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: 'ID格式错误' })
     @IsDefined({ groups: ['update'], message: 'ID必须指定' })
-    id!: number;
+    id!: string;
 }
 
 /**

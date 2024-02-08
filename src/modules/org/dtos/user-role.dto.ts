@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/swagger';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -18,7 +18,7 @@ export class QueryUserRoleDto extends ListWithTrashedQueryDto {
     orderBy?: PublicOrderType;
 
     @IsOptional()
-    roleId?: number;
+    roleId?: string;
 }
 
 /**
@@ -27,16 +27,16 @@ export class QueryUserRoleDto extends ListWithTrashedQueryDto {
 @DtoValidation({ groups: ['create'] })
 export class CreateUserRoleDto {
     @IsOptional()
-    id?: number;
+    id?: string;
 
     @IsNotEmpty({ groups: ['create', 'update'], message: '角色ID不能为空' })
-    roleId!: number;
+    roleId!: string;
 
     @IsOptional()
-    userId?: number;
+    userId?: string;
 
     @IsOptional()
-    userIdList?: number[];
+    userIdList?: string[];
 }
 
 /**
@@ -44,7 +44,7 @@ export class CreateUserRoleDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateUserRoleDto extends PartialType(CreateUserRoleDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '用户角色关联ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '用户角色关联ID格式错误' })
     @IsDefined({ groups: ['update'], message: '用户角色关联ID必须指定' })
-    id!: number;
+    id!: string;
 }

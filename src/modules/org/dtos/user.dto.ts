@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDefined, IsEnum, IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -19,7 +19,7 @@ export class QueryUserDto extends ListWithTrashedQueryDto {
     orderBy?: PublicOrderType;
 
     @IsOptional()
-    id?: number;
+    id?: string;
 
     @IsOptional()
     account?: string;
@@ -28,7 +28,7 @@ export class QueryUserDto extends ListWithTrashedQueryDto {
     nation?: string[];
 
     @IsOptional()
-    orgId?: number;
+    orgId?: string;
 
     @Transform(({ value }) => value.split(','))
     @IsOptional()
@@ -68,9 +68,9 @@ export class CreateUserDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-    @IsNumber(undefined, { groups: ['update'], message: '用户ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '用户ID格式错误' })
     @IsDefined({ groups: ['update'], message: '用户ID必须指定' })
-    id!: number;
+    id!: string;
 
     @IsNotEmpty({ groups: ['resetPwd'], message: '确认密码不能为空' })
     @IsOptional()
@@ -89,7 +89,7 @@ export class LoginUserDto {
     password?: string;
 
     @IsOptional()
-    userId?: number;
+    userId?: string;
 }
 
 /**

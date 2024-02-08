@@ -74,7 +74,7 @@ export class MenuService extends BaseService<MenuEntity, MenuRepository> {
      * @param current 当前菜单的ID
      * @param id
      */
-    protected async getParent(current?: number, id?: number) {
+    protected async getParent(current?: string, id?: string) {
         if (current === id) return undefined;
         let parent: MenuEntity | undefined;
         if (id !== undefined) {
