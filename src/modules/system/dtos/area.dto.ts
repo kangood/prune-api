@@ -47,7 +47,7 @@ export class CreateAreaDto {
     code!: string;
 
     @IsDataExist(AreaEntity, { always: true, message: '父地区不存在' })
-    @IsNumber(undefined, { always: true, message: '父地区ID格式不正确' })
+    @IsNumberString(undefined, { always: true, message: '父地区ID格式不正确' })
     @ValidateIf((value) => value.parent !== null && value.parent)
     @IsOptional({ always: true })
     parent?: string;
