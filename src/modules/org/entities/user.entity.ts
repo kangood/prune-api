@@ -162,7 +162,12 @@ export class UserEntity extends BaseEntity {
     @Column('varchar', { name: 'password', comment: '密码', length: 64 })
     password: string;
 
-    @Column('varchar', { name: 'salt', comment: '密码盐', length: 20 })
+    @Column('varchar', {
+        name: 'salt',
+        nullable: true,
+        comment: '密码盐',
+        length: 20,
+    })
     salt: string;
 
     @Column('datetime', {
