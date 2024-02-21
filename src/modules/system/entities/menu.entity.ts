@@ -18,14 +18,13 @@ export class MenuEntity extends BaseEntity {
 
     depth = 0;
 
-    @Column('varchar', { name: 'label', comment: '名称', length: 20 })
+    @Column('varchar', { name: 'label', comment: '标签', length: 64 })
     label: string;
 
     @Column('char', {
         name: 'resource_type',
         nullable: true,
-        comment:
-            '[20-菜单 60-数据];\n@Echo(api = DICTIONARY_ITEM_FEIGN_CLASS,dictType = EchoDictType.RESOURCE_TYPE)',
+        comment: '[10-目录 20-菜单 60-数据]; dictType = RESOURCE_TYPE',
         length: 2,
     })
     resourceType: string | null;
