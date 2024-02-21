@@ -52,7 +52,7 @@ export class CreateOsscDto {
  */
 @DtoValidation({ groups: ['update'] })
 export class UpdateOsscDto extends PartialType(CreateOsscDto) {
-    @IsNumberString(undefined, { groups: ['update'], message: 'ID格式错误' })
+    @IsNumberString(undefined, { groups: ['update'], message: '对象储存ID格式错误' })
     @IsDefined({ groups: ['update'], message: 'ID必须指定' })
     id!: string;
 }

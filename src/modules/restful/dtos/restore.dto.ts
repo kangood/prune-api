@@ -1,4 +1,4 @@
-import { IsDefined, IsNumber } from 'class-validator';
+import { IsDefined, IsNumberString } from 'class-validator';
 
 import { DtoValidation } from '@/modules/core/decorators';
 
@@ -7,7 +7,7 @@ import { DtoValidation } from '@/modules/core/decorators';
  */
 @DtoValidation()
 export class RestoreDto {
-    @IsNumber(undefined, {
+    @IsNumberString(undefined, {
         each: true,
         message: 'ID格式错误',
     })
@@ -15,5 +15,5 @@ export class RestoreDto {
         each: true,
         message: 'ID必须指定',
     })
-    ids: number[] = [];
+    ids: string[] = [];
 }
