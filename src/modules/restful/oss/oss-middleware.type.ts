@@ -1,4 +1,4 @@
-export class OSSType {
+export class OSSMiddlewareType {
     expire: string;
 
     policy: string;

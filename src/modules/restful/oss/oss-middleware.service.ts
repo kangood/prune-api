@@ -3,17 +3,17 @@ import { Injectable } from '@nestjs/common';
 import OSS from 'ali-oss';
 import dayjs from 'dayjs';
 
-import { OSSType } from './oss.type';
+import { OSSMiddlewareType } from './oss-middleware.type';
 
 @Injectable()
-export class OSSService {
+export class OSSMiddlewareService {
     /**
      * @description 获取 OSS 上传签名
      * @see https://help.aliyun.com/document_detail/31926.html
      * @return {*}  {Promise<OSSType>}
      * @memberof OSSService
      */
-    async getSignature(): Promise<OSSType> {
+    async getSignature(): Promise<OSSMiddlewareType> {
         const config = {
             accessKeyId: process.env.ACCESS_KEY,
             accessKeySecret: process.env.ACCESS_KEY_SECRET,

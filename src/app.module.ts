@@ -5,13 +5,12 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 
 import { database } from './config';
-import { AuthorityGuard } from './modules/auth/authority.guard';
 import { LoginGuard } from './modules/auth/login.guard';
 import { AppFilter, AppIntercepter, AppPipe } from './modules/core/providers';
 import { DatabaseModule } from './modules/database/database.module';
 import { OrgModule } from './modules/org/org.module';
 import { ResourceModule } from './modules/resource/resource.module';
-import { OSSModule } from './modules/restful/oss/oss.module';
+import { OSSMiddlewareModule } from './modules/restful/oss/oss-middleware.module';
 import { SystemModule } from './modules/system/system.module';
 
 const envFilePath = ['.env'];
@@ -29,7 +28,7 @@ if (IS_DEV) {
         DatabaseModule.forRoot(database),
         SystemModule,
         OrgModule,
-        OSSModule,
+        OSSMiddlewareModule,
         ResourceModule,
         ConfigModule.forRoot({
             isGlobal: true,
@@ -65,10 +64,10 @@ if (IS_DEV) {
             provide: APP_GUARD,
             useClass: LoginGuard,
         },
-        {
-            provide: APP_GUARD,
-            useClass: AuthorityGuard,
-        },
+        // {
+        //     provide: APP_GUARD,
+        //     useClass: AuthorityGuard,
+        // },
         JwtService,
         Logger,
     ],
