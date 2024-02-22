@@ -1,4 +1,4 @@
-export class OSSMiddlewareType {
+export class AliOSSType {
     expire: string;
 
     policy: string;
@@ -10,4 +10,14 @@ export class OSSMiddlewareType {
     host: string;
 
     dir: string;
+}
+
+export class QiniuOSSType {
+    host: string;
+
+    dir: string;
+
+    token: string;
+
+    expires: number;
 }
