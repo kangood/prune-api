@@ -27,7 +27,7 @@ export class MenuEntity extends BaseEntity {
     @Column('char', {
         name: 'resource_type',
         nullable: true,
-        comment: '[10-顶级菜单 20-二级菜单 60-按钮]; dictType = RESOURCE_TYPE',
+        comment: '[10-有子级的菜单 20-无子级的菜单 60-按钮]; dictType = RESOURCE_TYPE',
         length: 2,
     })
     resourceType: string | null;

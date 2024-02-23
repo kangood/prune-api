@@ -140,6 +140,8 @@ export class DictionaryService extends BaseService<
         }
         // 排除 code='00' 的数据
         qb.andWhere(`${this.repository.qbName}.code <> '00'`);
+        // 排除 state=0 的数据
+        qb.andWhere(`${this.repository.qbName}.state <> 0`);
         return qb.getMany();
     }
 
