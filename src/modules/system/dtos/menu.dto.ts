@@ -46,6 +46,18 @@ export class CreateMenuDto {
     })
     @IsNotEmpty({ groups: ['create'], message: '菜单名称不能为空' })
     @IsOptional({ groups: ['update'] })
+    name!: string;
+
+    @IsTreeUnique(MenuEntity, {
+        groups: ['create'],
+        message: '该菜单标签已经存在',
+    })
+    @IsTreeUniqueExist(MenuEntity, {
+        groups: ['update'],
+        message: '该菜单标签已经存在',
+    })
+    @IsNotEmpty({ groups: ['create'], message: '菜单标签不能为空' })
+    @IsOptional({ groups: ['update'] })
     label!: string;
 
     @IsDataExist(MenuEntity, { always: true, message: '父菜单不存在' })

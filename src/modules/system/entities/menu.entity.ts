@@ -18,27 +18,22 @@ export class MenuEntity extends BaseEntity {
 
     depth = 0;
 
+    @Column('varchar', { name: 'name', comment: '名称', length: 32 })
+    name: string;
+
     @Column('varchar', { name: 'label', comment: '标签', length: 64 })
     label: string;
 
     @Column('char', {
         name: 'resource_type',
         nullable: true,
-        comment: '[10-目录 20-菜单 60-数据]; dictType = RESOURCE_TYPE',
+        comment: '[10-顶级菜单 20-二级菜单 60-按钮]; dictType = RESOURCE_TYPE',
         length: 2,
     })
     resourceType: string | null;
 
     @Column('int', { name: 'tree_grade', nullable: true, comment: '树层级' })
     treeGrade: number | null;
-
-    @Column('varchar', {
-        name: 'tree_path',
-        nullable: true,
-        comment: '树路径',
-        length: 512,
-    })
-    treePath: string | null;
 
     @Column('varchar', {
         name: 'describe_',
