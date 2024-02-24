@@ -1,1 +1,1 @@
-export * from './ossc.controller';
+export * from './oss.controller';

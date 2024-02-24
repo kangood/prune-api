@@ -4,12 +4,12 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, UpdateDateColumn } 
 import { BoolBitTransformer } from '@/modules/core/helpers/utils';
 import { BaseEntity } from '@/modules/database/base';
 
-import { OsscEchoDto } from '../dtos';
+import { OssEchoDto } from '../dtos';
 
-@Entity('c_ossc', { schema: 'prune' })
-export class OsscEntity extends BaseEntity {
+@Entity('c_oss', { schema: 'prune' })
+export class OssEntity extends BaseEntity {
     @Type()
-    osscEchoDto: OsscEchoDto;
+    ossEchoDto: OssEchoDto;
 
     @Column('varchar', {
         name: 'code',

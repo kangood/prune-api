@@ -7,13 +7,13 @@ import { IsUnique, IsUniqueExist } from '@/modules/database/constraints';
 import { ListWithTrashedQueryDto } from '@/modules/restful/dtos';
 import { PublicOrderType } from '@/modules/system/constants';
 
-import { OsscEntity } from '../entities';
+import { OssEntity } from '../entities';
 
 /**
  * 分页查询验证
  */
 @DtoValidation({ type: 'query' })
-export class QueryOsscDto extends ListWithTrashedQueryDto {
+export class QueryOssDto extends ListWithTrashedQueryDto {
     @IsEnum(PublicOrderType, {
         message: `排序规则必须是${Object.values(PublicOrderType).join(',')}其中一项`,
     })
@@ -34,12 +34,12 @@ export class QueryOsscDto extends ListWithTrashedQueryDto {
  * 创建验证
  */
 @DtoValidation({ groups: ['create'] })
-export class CreateOsscDto {
-    @IsUnique(OsscEntity, {
+export class CreateOssDto {
+    @IsUnique(OssEntity, {
         groups: ['create'],
         message: '资源编码名称重复',
     })
-    @IsUniqueExist(OsscEntity, {
+    @IsUniqueExist(OssEntity, {
         groups: ['update'],
         message: '资源编码重复',
     })
@@ -51,8 +51,8 @@ export class CreateOsscDto {
  * 更新验证
  */
 @DtoValidation({ groups: ['update'] })
-export class UpdateOsscDto extends PartialType(CreateOsscDto) {
-    @IsNumberString(undefined, { groups: ['update'], message: '对象储存ID格式错误' })
+export class UpdateOssDto extends PartialType(CreateOssDto) {
+    @IsNumberString(undefined, { groups: ['update'], message: '对象存储ID格式错误' })
     @IsDefined({ groups: ['update'], message: 'ID必须指定' })
     id!: string;
 }
@@ -60,6 +60,6 @@ export class UpdateOsscDto extends PartialType(CreateOsscDto) {
 /**
  * 翻译成字典值的DTO
  */
-export class OsscEchoDto {
+export class OssEchoDto {
     category: string;
 }

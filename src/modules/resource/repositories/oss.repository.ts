@@ -1,11 +1,11 @@
 import { BaseRepository } from '@/modules/database/base';
 import { CustomRepository } from '@/modules/database/decorators';
 
-import { OsscEntity } from '../entities';
+import { OssEntity } from '../entities';
 
-@CustomRepository(OsscEntity)
-export class OsscRepository extends BaseRepository<OsscEntity> {
-    protected _qbName = 'ossc';
+@CustomRepository(OssEntity)
+export class OssRepository extends BaseRepository<OssEntity> {
+    protected _qbName = 'oss';
 
     buildBaseQB() {
         return this.createQueryBuilder(this.qbName);

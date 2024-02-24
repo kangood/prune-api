@@ -1,1 +1,1 @@
-export * from './ossc.dto';
+export * from './oss.dto';

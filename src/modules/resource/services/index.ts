@@ -1,1 +1,1 @@
-export * from './ossc.service';
+export * from './oss.service';

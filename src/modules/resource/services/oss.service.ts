@@ -13,22 +13,22 @@ import { QueryDictionaryDto } from '@/modules/system/dtos';
 
 import { DictionaryService } from '@/modules/system/services';
 
-import { CreateOsscDto, OsscEchoDto, QueryOsscDto, UpdateOsscDto } from '../dtos';
-import { OsscEntity } from '../entities';
-import { OsscRepository } from '../repositories';
+import { CreateOssDto, OssEchoDto, QueryOssDto, UpdateOssDto } from '../dtos';
+import { OssEntity } from '../entities';
+import { OssRepository } from '../repositories';
 
 // 用户查询接口
 type FindParams = {
-    [key in keyof Omit<QueryOsscDto, 'limit' | 'page'>]: QueryOsscDto[key];
+    [key in keyof Omit<QueryOssDto, 'limit' | 'page'>]: QueryOssDto[key];
 };
 
 /**
  * 用户数据操作
  */
 @Injectable()
-export class OsscService extends BaseService<OsscEntity, OsscRepository, FindParams> {
+export class OssService extends BaseService<OssEntity, OssRepository, FindParams> {
     constructor(
-        protected repository: OsscRepository,
+        protected repository: OssRepository,
         protected dictionaryService: DictionaryService,
     ) {
         super(repository);
@@ -38,7 +38,7 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
      * 新建用户
      * @param data
      */
-    async create(data: CreateOsscDto) {
+    async create(data: CreateOssDto) {
         // 获取通用参数
         const createParams = await super.create(data);
         // 执行插入
@@ -49,7 +49,7 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
      * 更新用户
      * @param data
      */
-    async update(data: UpdateOsscDto) {
+    async update(data: UpdateOssDto) {
         await this.repository.update(data.id, omit(data, ['id']));
         return this.detail(data.id);
     }
@@ -58,14 +58,14 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
      * 调用关联查询并分页
      */
     async listRelate(
-        options?: QueryOsscDto,
-        callback?: QueryHook<OsscEntity>,
-    ): Promise<PaginateReturn<OsscEntity>> {
+        options?: QueryOssDto,
+        callback?: QueryHook<OssEntity>,
+    ): Promise<PaginateReturn<OssEntity>> {
         // 调用 buildListQB
         const qb = await this.buildListQB(this.repository.buildBaseQB(), options, callback);
         // 调用分页函数，得到返回的数据
-        const osscEntityPaginateReturn = await paginate(qb, options);
-        const { items } = osscEntityPaginateReturn;
+        const ossEntityPaginateReturn = await paginate(qb, options);
+        const { items } = ossEntityPaginateReturn;
         // 查询字典列表按类型筛选
         const queryDictionaryDto = new QueryDictionaryDto();
         queryDictionaryDto.type = `('${DictionaryType.OSSC_CATEGORY}')`;
@@ -73,17 +73,17 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
         const dictionaryEntities = await this.dictionaryService.listWhereType(queryDictionaryDto);
         // 查询完之后挨个参数替换翻译
         for (const item of items) {
-            item.osscEchoDto = new OsscEchoDto();
+            item.ossEchoDto = new OssEchoDto();
             for (const dictionaryEntity of dictionaryEntities) {
                 // 翻译种类
                 if (dictionaryEntity.type === DictionaryType.OSSC_CATEGORY) {
                     if (dictionaryEntity.code === item.category) {
-                        item.osscEchoDto.category = dictionaryEntity.name;
+                        item.ossEchoDto.category = dictionaryEntity.name;
                     }
                 }
             }
         }
-        return osscEntityPaginateReturn;
+        return ossEntityPaginateReturn;
     }
 
     /**
@@ -93,9 +93,9 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
      * @param callback 添加额外的查询
      */
     protected async buildListQB(
-        queryBuilder: SelectQueryBuilder<OsscEntity>,
+        queryBuilder: SelectQueryBuilder<OssEntity>,
         options: FindParams,
-        callback?: QueryHook<OsscEntity>,
+        callback?: QueryHook<OssEntity>,
     ) {
         // 调用父类通用qb处理方法
         const qb = await super.buildListQB(queryBuilder, options, callback);
@@ -122,7 +122,7 @@ export class OsscService extends BaseService<OsscEntity, OsscRepository, FindPar
      * @param qb
      * @param orderBy 排序方式
      */
-    protected addOrderByQuery(qb: SelectQueryBuilder<OsscEntity>, orderBy?: PublicOrderType) {
+    protected addOrderByQuery(qb: SelectQueryBuilder<OssEntity>, orderBy?: PublicOrderType) {
         const queryName = this.repository.qbName;
         switch (orderBy) {
             // 按时间倒序

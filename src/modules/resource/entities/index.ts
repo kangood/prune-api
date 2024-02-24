@@ -1,1 +1,1 @@
-export * from './ossc.entity';
+export * from './oss.entity';

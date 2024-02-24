@@ -1,1 +1,1 @@
-export * from './ossc.repository';
+export * from './oss.repository';
