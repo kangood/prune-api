@@ -1,0 +1,2 @@
+export const AUTHORITY_TYPE_MENU = 'MENU';
+export const AUTHORITY_TYPE_RESOURCE = 'RESOURCE';
