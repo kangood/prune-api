@@ -17,7 +17,7 @@ import { BaseEntity } from '@/modules/database/base';
 @Tree('materialized-path')
 @Index('uk_name', ['label'], { unique: true })
 @Index('fu_path', ['mpath'], { fulltext: true })
-@Entity('c_org', { schema: 'lamp_generator' })
+@Entity('c_org')
 export class OrgEntity extends BaseEntity {
     @Type(() => OrgEntity)
     @TreeParent({ onDelete: 'CASCADE' })

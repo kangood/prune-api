@@ -6,7 +6,7 @@ import { BaseEntity } from '@/modules/database/base';
 
 import { OsscEchoDto } from '../dtos';
 
-@Entity('c_ossc', { schema: 'lamp' })
+@Entity('c_ossc', { schema: 'prune' })
 export class OsscEntity extends BaseEntity {
     @Type()
     osscEchoDto: OsscEchoDto;

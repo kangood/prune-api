@@ -1,10 +1,8 @@
 {
-    "name": "lamp-nestjs",
-    "version": "0.0.1",
-    "description": "",
-    "author": "",
+    "name": "prune-api",
+    "version": "1.0.0",
+    "author": "KangodYan",
     "private": true,
-    "license": "UNLICENSED",
     "scripts": {
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

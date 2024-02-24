@@ -7,7 +7,7 @@ import { ResourceEntity } from '@/modules/system/entities';
 @Index('uk_role_authority', ['authorityId', 'authorityType', 'roleId'], {
     unique: true,
 })
-@Entity('c_role_authority', { schema: 'lamp_nestjs' })
+@Entity('c_role_authority')
 export class RoleAuthorityEntity extends BaseEntity {
     @Type()
     resource: ResourceEntity;

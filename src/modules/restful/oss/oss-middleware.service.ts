@@ -58,7 +58,7 @@ export class OSSMiddlewareService {
         const mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
         const options = {
             host: 'https://qiniu.panlore.top',
-            dir: 'project/tealamp/',
+            dir: 'project/prune/',
             scope: 'kd-figure-bed',
             expire: new Date().getTime() + 60 * 60 * 1000, // 和默认值一样，1个小时
         };

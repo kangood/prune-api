@@ -13,7 +13,7 @@ import { BaseEntity } from '@/modules/database/base';
 
 @Exclude()
 @Index('uk_type_code', ['type', 'code'], { unique: true })
-@Entity('c_dictionary', { schema: 'lamp_generator' })
+@Entity('c_dictionary')
 export class DictionaryEntity extends BaseEntity {
     @Expose()
     @Column('varchar', { name: 'type', comment: '类型', length: 255 })

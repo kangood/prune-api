@@ -6,7 +6,7 @@ import { BaseEntity } from '@/modules/database/base';
 import { RoleEntity } from './role.entity';
 
 @Index('uk_user_role', ['roleId', 'userId'], { unique: true })
-@Entity('c_user_role', { schema: 'lamp_nestjs' })
+@Entity('c_user_role')
 export class UserRoleEntity extends BaseEntity {
     @Type()
     role: RoleEntity;

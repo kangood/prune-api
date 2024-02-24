@@ -14,7 +14,7 @@ import { BaseEntity } from '@/modules/database/base';
 import { RoleEchoDto } from '../dtos';
 
 @Index('uk_code', ['code'], { unique: true })
-@Entity('c_role', { schema: 'lamp_nestjs' })
+@Entity('c_role')
 export class RoleEntity extends BaseEntity {
     @Type()
     roleEchoDto: RoleEchoDto;

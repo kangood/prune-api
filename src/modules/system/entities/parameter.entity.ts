@@ -11,7 +11,7 @@ import { BoolBitTransformer } from '@/modules/core/helpers/utils';
 import { BaseEntity } from '@/modules/database/base';
 
 @Index('uk_key', ['key'], { unique: true })
-@Entity('c_parameter', { schema: 'lamp_generator' })
+@Entity('c_parameter')
 export class ParameterEntity extends BaseEntity {
     @Column('varchar', {
         name: 'key_',

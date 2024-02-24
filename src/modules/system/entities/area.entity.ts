@@ -16,7 +16,7 @@ import { BaseEntity } from '@/modules/database/base';
 
 @Tree('materialized-path')
 @Index('uk_code', ['code'], { unique: true })
-@Entity('c_area', { schema: 'lamp_generator' })
+@Entity('c_area')
 export class AreaEntity extends BaseEntity {
     @Type(() => AreaEntity)
     @TreeParent({ onDelete: 'CASCADE' })

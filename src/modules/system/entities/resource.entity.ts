@@ -11,7 +11,7 @@ import { BoolBitTransformer } from '@/modules/core/helpers';
 import { BaseEntity } from '@/modules/database/base';
 
 @Index('uk_code', ['code'], { unique: true })
-@Entity('c_resource', { schema: 'lamp_nestjs' })
+@Entity('c_resource')
 export class ResourceEntity extends BaseEntity {
     @Column('varchar', {
         name: 'code',

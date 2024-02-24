@@ -13,7 +13,7 @@ import { BaseEntity } from '@/modules/database/base';
 import { OrgEntity } from '@/modules/org/entities/org.entity';
 
 @Index('uk_name', ['name'], { unique: true })
-@Entity('c_station', { schema: 'lamp_generator' })
+@Entity('c_station')
 export class StationEntity extends BaseEntity {
     @Column('varchar', {
         name: 'name',

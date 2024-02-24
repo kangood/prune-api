@@ -6,7 +6,7 @@ import { BaseEntity } from '@/modules/database/base';
 
 @Tree('materialized-path')
 @Index('uk_path', ['path'], { unique: true })
-@Entity('c_menu', { schema: 'lamp_nestjs' })
+@Entity('c_menu')
 export class MenuEntity extends BaseEntity {
     @Type(() => MenuEntity)
     @TreeParent({ onDelete: 'CASCADE' })

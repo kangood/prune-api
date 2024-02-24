@@ -18,7 +18,7 @@ import { RoleEntity } from './role.entity';
 import { UserRoleEntity } from './user-role.entity';
 
 @Index('uk_account', ['account'], { unique: true })
-@Entity('c_user', { schema: 'lamp_generator' })
+@Entity('c_user')
 export class UserEntity extends BaseEntity {
     @Type()
     orgMap: OrgEntity;
