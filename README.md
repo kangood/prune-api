@@ -7,4 +7,4 @@
 - 数据库：MySQL 8.0
 - 权限认证：NestJS/JWT
 
-prune admin：[Prune Admin](https://github.com/KangodYan/prune-admin)
+Prune Admin：[https://github.com/KangodYan/prune-admin](https://github.com/KangodYan/prune-admin)
