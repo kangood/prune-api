@@ -11,7 +11,7 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 24/02/2024 11:41:41
+ Date: 28/02/2024 13:36:45
 */
 
 SET NAMES utf8mb4;
@@ -238,7 +238,7 @@ INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `des
 INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `describe_`, `is_general`, `path`, `component`, `state`, `sort_value`, `icon`, `group_`, `data_scope`, `custom_class`, `is_def`, `parentId`, `mpath`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512095515308101', '权限管理', 'sys.menu2.authority.index', '10', NULL, NULL, b'0', 'authority', NULL, b'1', 4, 'ic2-authority', NULL, NULL, NULL, b'0', NULL, '512095515308101.', b'0', NULL, NULL, '2023-12-18 08:41:59', NULL, '2023-12-18 08:41:59');
 INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `describe_`, `is_general`, `path`, `component`, `state`, `sort_value`, `icon`, `group_`, `data_scope`, `custom_class`, `is_def`, `parentId`, `mpath`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512103019884613', '基础配置', 'sys.menu2.base.index', '10', NULL, NULL, b'0', 'base', NULL, b'1', 5, 'ic2-base', NULL, NULL, NULL, b'0', NULL, '512103019884613.', b'0', NULL, NULL, '2023-12-18 09:12:31', NULL, '2023-12-18 09:12:31');
 INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `describe_`, `is_general`, `path`, `component`, `state`, `sort_value`, `icon`, `group_`, `data_scope`, `custom_class`, `is_def`, `parentId`, `mpath`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512216121036869', '资源管理', 'sys.menu2.resource.index', '10', NULL, NULL, b'0', 'resource', NULL, b'1', 6, 'ic2-resource', NULL, NULL, NULL, b'0', NULL, '512216121036869.', b'0', NULL, NULL, '2023-12-18 16:52:44', NULL, '2023-12-18 16:52:44');
-INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `describe_`, `is_general`, `path`, `component`, `state`, `sort_value`, `icon`, `group_`, `data_scope`, `custom_class`, `is_def`, `parentId`, `mpath`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512216970563653', '对象存储', 'sys.menu2.resource.oss', '20', NULL, NULL, b'0', 'osss', '/resource/osss/list.page.tsx', b'1', 1, '', NULL, NULL, NULL, b'0', '512216121036869', '512216121036869.512216970563653.', b'0', NULL, NULL, '2023-12-18 16:56:11', NULL, '2023-12-18 16:56:11');
+INSERT INTO `c_menu` (`id`, `name`, `label`, `resource_type`, `tree_grade`, `describe_`, `is_general`, `path`, `component`, `state`, `sort_value`, `icon`, `group_`, `data_scope`, `custom_class`, `is_def`, `parentId`, `mpath`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512216970563653', '对象存储', 'sys.menu2.resource.oss', '20', NULL, NULL, b'0', 'osses', '/resource/osses/list.page.tsx', b'1', 1, '', NULL, NULL, NULL, b'0', '512216121036869', '512216121036869.512216970563653.', b'0', NULL, NULL, '2023-12-18 16:56:11', NULL, '2023-12-18 16:56:11');
 COMMIT;
 
 -- ----------------------------
@@ -403,9 +403,9 @@ INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonl
 INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('477524312936517', 'org:station:importExcel', '导入', '473633775972421', NULL, b'0', NULL, NULL, '2023-09-11 16:11:24.228134', NULL, '2023-09-11 16:11:24.228134');
 INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('477540145778757', 'org:userRole:listUserRoleByRoleId;org:roleAuthority:listRoleAuthorityIdByRoleId;org:userRole:saveListAfterDelete', '分配角色', '477506352619589', NULL, b'0', NULL, NULL, '2023-09-11 17:15:49.679589', NULL, '2023-09-16 19:52:57.737020');
 INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('477540812017733', 'org:roleAuthority:listRoleAuthorityIdByRoleId;system:resource:list;org:roleAuthority:saveBatchRoleAutority', '分配资源', '477506352619589', NULL, b'0', NULL, NULL, '2023-09-11 17:18:32.326606', NULL, '2023-09-16 19:52:57.739896');
-INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512263975366725', 'resource:oss:store', '新建', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:07:27.136296', NULL, '2023-12-18 20:07:27.136296');
-INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512264058916933', 'resource:oss:delete', '删除', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:07:47.518657', NULL, '2023-12-18 20:07:47.518657');
-INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512264133689413', 'resource:oss:update', '更新', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:08:05.772686', NULL, '2023-12-18 20:08:05.772686');
+INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512263975366725', 'resource:oss:store', '新建', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:07:27.136296', NULL, '2024-02-24 19:01:52.081936');
+INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512264058916933', 'resource:oss:delete', '删除', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:07:47.518657', NULL, '2024-02-24 19:01:56.785748');
+INSERT INTO `c_resource` (`id`, `code`, `name`, `menu_id`, `describe_`, `readonly_`, `deleted_at`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES ('512264133689413', 'resource:oss:update', '更新', '512216970563653', NULL, b'0', NULL, NULL, '2023-12-18 20:08:05.772686', NULL, '2024-02-24 19:02:00.186409');
 COMMIT;
 
 -- ----------------------------
@@ -699,11 +699,10 @@ BEGIN;
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('477552131289157', '1', '2', NULL, NULL, '2023-09-11 18:04:35.803000');
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('477552131289158', '1', '1', NULL, NULL, '2023-09-11 18:04:35.803000');
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('477554458931269', '4', '1', NULL, NULL, '2023-09-11 18:14:04.075000');
-INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('477554796138565', '2', '3', NULL, NULL, '2023-09-11 18:15:26.401000');
-INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('477554796138566', '2', '2', NULL, NULL, '2023-09-11 18:15:26.401000');
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('534901026406469', '534899980963909', '3', NULL, NULL, '2024-02-20 19:17:50.900000');
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('534901026406470', '534899980963909', '5', NULL, NULL, '2024-02-20 19:17:50.900000');
 INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('534901026410565', '534899980963909', '4', NULL, NULL, '2024-02-20 19:17:50.901000');
+INSERT INTO `c_user_role` (`id`, `role_id`, `user_id`, `deleted_at`, `created_by`, `created_at`) VALUES ('536293012832325', '2', '3', NULL, NULL, '2024-02-24 17:41:51.336000');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
