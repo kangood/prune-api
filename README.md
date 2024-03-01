@@ -16,6 +16,12 @@ Prune Api 是现代化风格的快速开发平台 [Prune Admin](https://github.c
 git clone https://github.com/KangodYan/prune-api.git
 ```
 
+### 导入数据库文件
+
+- 在 MySQL8 数据库中新建数据库，命名 `prune`
+- 找到项目根目录下的 `prune.sql` 文件，导入到 `prune` 数据库中
+- 在数据库配置文件中去掉 sql_mode 配置项的 `ONLY_FULL_GROUP_BY` 选项，然后重启服务
+
 ### 安装依赖
 
 在项目根目录下运行以下命令安装项目依赖：
