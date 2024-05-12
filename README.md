@@ -29,6 +29,9 @@ git clone https://github.com/KangodYan/prune-api.git
 ```bash
 pnpm install
 ```
+### 添加配置
+
+在根目录下创建 `.env.dev` 文件，手动复制 `.env.example` 文件内容到 `.env.dev`，并填写对应相应配置
 
 ### 启动开发服务器
 
@@ -42,7 +45,7 @@ pnpm start:dev
 
 ### 构建生产版本
 
-运行以下命令以构建生产版本：
+创建 `.env.prod` 文件并填写好配置，运行以下命令以构建生产版本：
 
 ```bash
 pnpm build
