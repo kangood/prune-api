@@ -57,9 +57,9 @@ export class OSSMiddlewareService {
         const secretKey = process.env.QINIU_SECRET_KEY;
         const mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
         const options = {
-            host: 'https://qiniu.kangod.top',
+            host: 'https://qiniu.panlore.top',
             dir: 'project/prune/',
-            scope: 'kd-abroad',
+            scope: 'kd-figure-bed',
             expire: new Date().getTime() + 60 * 60 * 1000, // 和默认值一样，1个小时
         };
         const putPolicy = new qiniu.rs.PutPolicy(options);
