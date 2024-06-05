@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt';
 import { isEmpty } from 'lodash';
@@ -71,10 +71,16 @@ export class AuthService {
         if (!refreshToken) {
             return null;
         }
+        let data;
         // 验证账号
-        const data = this.jwtService.verify(refreshToken, {
-            secret: process.env.JWT_SECRET,
-        });
+        try {
+            data = this.jwtService.verify(refreshToken, {
+                secret: process.env.JWT_SECRET,
+            });
+        } catch (e) {
+            // 出现 TokenExpiredError，表示 refreshToken 也过期了，抛给前端处理
+            throw new UnauthorizedException('refresh 失效，请重新登录');
+        }
         // 查询需要的角色数据
         const userList = await this.userService.getUserAndRoles({
             id: data.id,
